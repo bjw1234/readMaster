@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+</head>
+<body>
+
+	<!-- <fieldset> 标签可以将表单内的相关元素分组。
+	<fieldset> 标签会在相关表单元素周围绘制边框。 -->
+	<fieldset style="display: inline-block;">
+		<legend>登陆框</legend>
+		用户名：<input type="text" name=""><br><br>
+		密&nbsp;&nbsp;&nbsp;码：<input type="password" name="">
+		<br><br>
+		<select>
+			<optgroup label="理科">
+				<option>物理</option>
+				<option>化学</option>
+			</optgroup>
+			<optgroup label="文科">
+				<option>地理</option>
+				<option>历史</option>
+				<option>政治</option>
+			</optgroup>			
+		</select>
+	</fieldset>
+
+	<!-- <datalist> 标签被用来在为 <input> 元素提供"自动完成"的特性。用户能看到一个下拉列表，里边的选项是预先定义好的，将作为用户的输入数据。
+	IE 9 和更早版本的 IE 浏览器 以及 Safari 不支持 <datalist> 标签。-->
+	<br><br>
+	<form action="demo-form.php" method="get">
+		<input list="browsers" name="browser">
+		<datalist id="browsers">
+		  <option value="Internet Explorer">
+		  <option value="Firefox">
+		  <option value="Chrome">
+		  <option value="Opera">
+		  <option value="Safari">
+		</datalist>
+		<input type="submit">
+	</form>
+
+	<!-- <iframe src="http://www.taobao.com" frameborder="0"></iframe> -->
+
+	<!-- html5内容 
+
+		canvas
+		video、audio
+		本地离线存储
+		新的特殊内容元素
+		新的表单控件
+	-->
+
+
+	<style type="text/css">
+		.drag {
+			margin: 20px;
+			vertical-align: top;
+			display: inline-block;
+			width: 200px;
+			height: 200px;
+			border: 3px solid #eee;
+		}
+	</style>	
+	<div class="drag" ondragover="dragOver(event)" ondrop="onDrop(event)">
+		<img id="img" ondragstart="dragStart(event)" draggable="true"
+			 src="http://www.runoob.com/try/demo_source/img_tree.png" width="100">
+	</div>
+	<div class="drag" ondragover="dragOver(event)" ondrop="onDrop(event)"></div>
+
+	<script type="text/javascript">
+		function dragStart(e) {
+			e.dataTransfer.setData('text', e.target.id);
+		}
+
+		function dragOver(e) {
+			e.preventDefault();
+		}
+
+		function onDrop(e) {
+			e.preventDefault();
+			var data = e.dataTransfer.getData('text');
+			e.target.appendChild(document.getElementById(data));
+		}
+	</script>
+
+
+
+	<!-- 
+		鼠标悬浮翻转
+	 -->
+	<div class="wrapper">
+		<div class="content">
+			<div class="side front">
+				<h1>front</h1>
+			</div>
+			<div class="side back">
+				<h1>back</h1>
+			</div>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+	<style type="text/css">
+		.wrapper {
+			position: relative;
+			width: 170px;
+			height: 200px;	
+			margin-left: 100px;
+			perspective: 500px;
+			transform-style: preserve-3d;
+		}
+		.content {
+			width: 170px;
+			height: 200px;							
+			position: relative;			
+		}
+		.content:hover .front {
+			transform: rotateY(180deg) translate(170px, 0);
+		}
+		.content:hover .back {
+			transform: rotateY(0deg) translate(0,0);
+		}
+
+		.side {
+			position: absolute;
+			width: 170px;
+			height: 200px;		
+			line-height: 100px;
+			text-align: center;	
+			border: 1px solid #ccc;
+			backface-visibility: hidden;
+			transition: all 2s;			
+		}
+		.front {
+			left: 0;
+			top: 0;
+			background: pink;
+			transform: rotateY(0deg) translate(0,0);
+		}
+		.back {
+			z-index: -1;
+			left: 0;
+			top: 0;
+			background: yellow;
+			transform: rotateY(-180deg) translate(-170px,0);
+		}
+	</style>
+
+</body>
+</html>
